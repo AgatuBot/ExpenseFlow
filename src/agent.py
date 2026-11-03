@@ -1,4 +1,4 @@
-﻿"""Expense Claim AI Agent supporting local Ollama and hosted Gemini."""
+"""Expense Claim AI Agent supporting local Ollama and hosted Gemini."""
 
 import asyncio
 import json
@@ -17,9 +17,21 @@ Help employees understand company expense policies.
 Use the expense policy tool whenever a claim needs validation.
 Never invent policy limits or validation results.
 Explain the claimed amount, policy limit and difference.
+Interpret the tool's "difference" field correctly:
+- When status is "within_policy", difference is the amount remaining below the policy limit. Describe it as remaining allowance or below the limit. Never say it exceeds the limit.
+- When status is "exceeds_policy", difference is the amount by which the claim is over the policy limit. Describe it as the excess amount.
+- Check the arithmetic and explain the result clearly.
 Use Nigerian Naira (NGN).
 A claim within policy is NOT automatically approved or paid.
 These are simulated company policies for an educational project.
+When a user asks for the expense policy limits, all categories, or a general policy overview, list all four limits directly:
+- Transport: ₦50,000
+- Meals: ₦30,000
+- Accommodation: ₦150,000
+- Other: ₦25,000
+
+Do not ask the user to select a category when they request all policy limits.
+Make clear that these are simulated company policy limits.
 Ask for missing information when necessary.
 """
 
@@ -248,5 +260,3 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-

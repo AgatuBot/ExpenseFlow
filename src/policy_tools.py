@@ -1,5 +1,7 @@
 ﻿"""Expense policy validation tools for the AI agent."""
 
+import math
+
 POLICY_LIMITS = {
     "transport": 50000,
     "meals": 30000,
@@ -9,7 +11,15 @@ POLICY_LIMITS = {
 
 
 def check_expense_claim(category: str, amount: float) -> dict:
-    """Check an expense claim against the simulated company policy."""
+    """Validate an expense against simulated company policy limits."""
+
+    # Validate category
+    if not isinstance(category, str) or not category.strip():
+        return {
+            "status": "invalid",
+            "message": "Please provide a valid expense category.",
+            "allowed_categories": list(POLICY_LIMITS.keys()),
+        }
 
     category = category.strip().lower()
 
@@ -20,25 +30,35 @@ def check_expense_claim(category: str, amount: float) -> dict:
             "allowed_categories": list(POLICY_LIMITS.keys()),
         }
 
-    if amount <= 0:
+    # Validate amount
+    if isinstance(amount, bool) or not isinstance(amount, (int, float)):
         return {
             "status": "invalid",
-            "message": "The expense amount must be greater than zero.",
+            "message": "The expense amount must be a valid number.",
+        }
+
+    if not math.isfinite(amount) or amount <= 0:
+        return {
+            "status": "invalid",
+            "message": "The expense amount must be greater than zero and finite.",
         }
 
     limit = POLICY_LIMITS[category]
-    approved = amount <= limit
+    within_policy = amount <= limit
+    difference = round(abs(limit - amount), 2)
 
     return {
-        "status": "within_policy" if approved else "exceeds_policy",
+        "status": "within_policy" if within_policy else "exceeds_policy",
         "category": category,
         "claimed_amount": amount,
         "policy_limit": limit,
-        "difference": round(abs(limit - amount), 2),
+        "difference": difference,
         "currency": "NGN",
         "message": (
-            "The claim is within the simulated company policy."
-            if approved
-            else "The claim exceeds the simulated company policy limit."
+            "The claim is within the simulated company policy limit. "
+            "This does not mean it has been approved or paid."
+            if within_policy
+            else "The claim exceeds the simulated company policy limit "
+                 "and may require further review."
         ),
     }

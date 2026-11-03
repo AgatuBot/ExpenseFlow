@@ -3,165 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#101828">
-    <title>ExpenseFlow | AI Expense Assistant</title>
+    <meta name="theme-color" content="#14243a">
+    <meta name="description" content="ExpenseFlow helps employees understand expense policies and check expense claims.">
+    <title>ExpenseFlow | Expense Management</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="app-shell">
-        <aside class="sidebar">
-            <div class="brand">
-                <div class="brand-icon">E</div>
-                <div>
-                    <strong>ExpenseFlow</strong>
-                    <span>INTELLIGENT FINANCE</span>
-                </div>
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="#overview" aria-label="ExpenseFlow home">
+            <span class="brand-icon">E</span>
+            <span class="brand-copy">
+                <strong>ExpenseFlow</strong>
+                <small>EXPENSE MANAGEMENT</small>
+            </span>
+        </a>
+
+        <div class="nav-label">WORKSPACE</div>
+        <nav class="main-nav" aria-label="Main navigation">
+            <a class="nav-item active" href="#overview" data-view="overview">
+                <span class="nav-icon">⌂</span> Overview
+            </a>
+            <a class="nav-item" href="#assistant" data-view="assistant">
+                <span class="nav-icon">✧</span> AI Assistant
+            </a>
+            <a class="nav-item" href="#policy" data-view="policy">
+                <span class="nav-icon">▤</span> Expense Policy
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="online-dot"></span>
+            <div>
+                <strong>ExpenseFlow is ready</strong>
+                <small>Expense support workspace</small>
             </div>
+        </div>
+    </aside>
 
-            <div class="workspace-label">WORKSPACE</div>
-            <nav>
-                <a class="nav-item active" href="/">
-                    <span>▦</span> Overview
-                </a>
-                <a class="nav-item" href="#assistant">
-                    <span>✧</span> AI Assistant
-                </a>
-                <a class="nav-item" href="#policy">
-                    <span>✓</span> Expense Policy
-                </a>
-            </nav>
-
-            <div class="sidebar-bottom">
-                <div class="online-indicator"></div>
-                <div>
-                    <strong>Local AI engine</strong>
-                    <span>Powered by Ollama</span>
-                </div>
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                
+                <h1 id="pageTitle">Overview</h1>
             </div>
-        </aside>
+            <div class="topbar-right">
+                <span class="status-pill"><span class="online-dot"></span> Assistant available</span>
+                <img class="profile-avatar" src="{{ url_for('static', filename='images/agatubot-logo.jpg') }}" alt="AgatuBot logo">
+            </div>
+        </header>
 
-        <main class="main-content">
-            <header class="topbar">
-                <div>
-                    <span class="breadcrumb">Workspace / Overview</span>
-                    <h1>Expense management</h1>
+        <section class="view active" id="overview" data-page-title="Overview">
+            <div class="welcome">
+                <div class="welcome-copy">
+                    <span class="eyebrow">EXPENSE MANAGEMENT, SIMPLIFIED</span>
+                    <h2>Make smarter<br>expense decisions.</h2>
+                    <p>Understand company expense policies, check claims and get clear guidance from your AI assistant.</p>
+                    <button class="primary-button" type="button" data-go="assistant">
+                        Open AI Assistant <span>→</span>
+                    </button>
                 </div>
-                <div class="topbar-right">
-                    <span class="status-pill"><span></span> AI engine configured</span>
-                    <div class="avatar">U</div>
-                </div>
-            </header>
-
-            <section class="welcome">
-                <div>
-                    <span class="eyebrow">INTELLIGENT EXPENSE MANAGEMENT</span>
-                    <h2>Make smarter expense decisions.</h2>
-                    <p>Analyse claims, understand company policy and get instant explanations with your AI assistant.</p>
-                </div>
-                <div class="welcome-art">✧</div>
-            </section>
-
-            <section class="stats-grid">
-                <article class="stat-card">
-                    <div class="stat-heading">AI MODEL <span>✧</span></div>
-                    <div class="stat-value">Qwen 2.5</div>
-                    <div class="stat-note">3B parameter model</div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-heading">POLICY CATEGORIES <span>▤</span></div>
-                    <div class="stat-value">04</div>
-                    <div class="stat-note">Configured expense types</div>
-                </article>
-                <article class="stat-card">
-                    <div class="stat-heading">AI AVAILABILITY <span>●</span></div>
-                    <div class="stat-value">Local</div>
-                    <div class="stat-note">Runs through Ollama</div>
-                </article>
-            </section>
-
-            <section class="content-grid">
-                <article class="panel assistant-panel" id="assistant">
-                    <div class="panel-heading">
-                        <div class="assistant-heading-icon">✧</div>
-                        <div>
-                            <h3>Expense AI Assistant</h3>
-                            <p>Ask questions about employee expense claims.</p>
+                <div class="welcome-art" aria-hidden="true">
+                    <div class="art-circle">
+                        <div class="art-card">
+                            <span class="art-symbol">₦</span>
+                            <span class="art-line"></span>
+                            <span class="art-line short"></span>
+                            <span class="art-check">✓</span>
                         </div>
-                        <span class="live-label">● READY</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your workspace</h2>
+                    <p>Quick access to the tools you need.</p>
+                </div>
+            </div>
+
+            <div class="overview-grid">
+                <button class="overview-card" type="button" data-go="assistant">
+                    <span class="card-icon navy-icon">✧</span>
+                    <span class="card-title">AI Expense Assistant</span>
+                    <span class="card-description">Ask questions, check claims and understand policy decisions.</span>
+                    <span class="card-link">Start a conversation <span>→</span></span>
+                </button>
+
+                <button class="overview-card" type="button" data-go="policy">
+                    <span class="card-icon teal-icon">▤</span>
+                    <span class="card-title">Expense Policy</span>
+                    <span class="card-description">Review expense categories, spending limits and important rules.</span>
+                    <span class="card-link">View policy details <span>→</span></span>
+                </button>
+            </div>
+
+            <div class="section-heading policy-overview-heading">
+                <div>
+                    <h2>Policy at a glance</h2>
+                    <p>Simulated company expense limits.</p>
+                </div>
+                <button class="text-button" type="button" data-go="policy">View all rules →</button>
+            </div>
+
+            <div class="limit-grid">
+                <article class="limit-card">
+                    <span>Transport</span>
+                    <strong>₦50,000</strong>
+                </article>
+                <article class="limit-card">
+                    <span>Meals</span>
+                    <strong>₦30,000</strong>
+                </article>
+                <article class="limit-card">
+                    <span>Accommodation</span>
+                    <strong>₦150,000</strong>
+                </article>
+                <article class="limit-card">
+                    <span>Other</span>
+                    <strong>₦25,000</strong>
+                </article>
+            </div>
+        </section>
+
+        <section class="view" id="assistant" data-page-title="AI Assistant" hidden>
+            <div class="page-intro">
+                <span class="eyebrow">YOUR EXPENSE SUPPORT</span>
+                <h2>AI Expense Assistant</h2>
+                <p>Ask about company expense rules or describe a claim to receive a policy-based assessment.</p>
+            </div>
+
+            <div class="assistant-layout">
+                <section class="panel chat-panel">
+                    <div class="panel-heading">
+                        <img class="assistant-avatar" src="{{ url_for('static', filename='images/agatubot-logo.jpg') }}" alt="AgatuBot">
+                        <div class="panel-heading-copy">
+                            <h3>ExpenseFlow Assistant</h3>
+                            <p><span class="online-dot"></span> Ready to help</p>
+                        </div>
+                        <span class="secure-label">Expense support</span>
                     </div>
 
-                    <div class="chat-area" id="chatArea" aria-live="polite">
+                    <div class="chat-area" id="chatArea" aria-live="polite" aria-relevant="additions">
                         <div class="message assistant-message">
-                            <div class="message-avatar">✧</div>
+                            <img class="message-avatar" src="{{ url_for('static', filename='images/agatubot-logo.jpg') }}" alt="AgatuBot">
                             <div class="message-content">
-                                <span class="message-author">ExpenseFlow AI</span>
-                                <p>Hello! I'm your Expense Claim Assistant. Tell me about an expense claim, and I'll help you check it against the simulated company policy.</p>
+                                <span class="message-author">ExpenseFlow Assistant</span>
+                                <div class="message-body">
+                                    <p>Hello! I'm your ExpenseFlow Assistant.</p>
+                                    <p>I can help you understand expense policies, review spending limits and check individual expense claims.</p>
+                                    <p>What would you like to know?</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="suggestion-heading">TRY ASKING</div>
                     <div class="suggestions">
-                        <button class="suggestion" data-message="Check a transport expense claim of 35000 Naira.">Check ₦35,000 transport</button>
-                        <button class="suggestion" data-message="Can I claim 65000 Naira for transport?">Check ₦65,000 transport</button>
-                        <button class="suggestion" data-message="What are the expense policy limits?">Explain policy limits</button>
+                        <button class="suggestion" data-message="What are all the expense policy limits?">What are the policy limits?</button>
+                        <button class="suggestion" data-message="Check a transport expense claim of 35000 Naira.">Check a ₦35,000 transport claim</button>
+                        <button class="suggestion" data-message="Can I claim 65000 Naira for transport?">Check a ₦65,000 transport claim</button>
+                        <button class="suggestion" data-message="What happens if my expense exceeds the policy limit?">What happens if I exceed a limit?</button>
                     </div>
 
                     <form id="chatForm" class="chat-form">
                         <label for="messageInput" class="sr-only">Your expense question</label>
-                        <input id="messageInput" type="text" placeholder="Describe an expense claim..." autocomplete="off" required>
+                        <input id="messageInput" type="text" placeholder="Ask about an expense or policy..." autocomplete="off" required>
                         <button type="submit" id="sendButton">Send <span>↑</span></button>
                     </form>
-                    <div class="privacy-note">Your AI model runs locally on your computer through Ollama.</div>
-                </article>
+                    <p class="chat-disclaimer">AI responses are guidance based on simulated policies. Claims require appropriate human review.</p>
+                </section>
 
-                <aside class="panel policy-panel" id="policy">
-                    <div class="panel-heading">
-                        <div>
-                            <h3>Expense policy</h3>
-                            <p>Simulated company spending limits</p>
+                <aside class="assistant-help">
+                    <div class="panel help-card">
+                        <h3>What I can help with</h3>
+                        <div class="help-item">
+                            <span class="help-icon">₦</span>
+                            <div><strong>Claim checks</strong><p>Compare a claimed amount with its category limit.</p></div>
                         </div>
-                        <span class="policy-icon">▤</span>
-                    </div>
-
-                    <div class="policy-list">
-                        <div class="policy-item">
-                            <div class="category-icon">↗</div>
-                            <div class="category-details"><strong>Transport</strong><span>Travel and commuting</span></div>
-                            <strong class="limit">₦50,000</strong>
+                        <div class="help-item">
+                            <span class="help-icon">▤</span>
+                            <div><strong>Policy guidance</strong><p>Understand expense categories and spending rules.</p></div>
                         </div>
-                        <div class="policy-item">
-                            <div class="category-icon">☕</div>
-                            <div class="category-details"><strong>Meals</strong><span>Food and refreshments</span></div>
-                            <strong class="limit">₦30,000</strong>
-                        </div>
-                        <div class="policy-item">
-                            <div class="category-icon">⌂</div>
-                            <div class="category-details"><strong>Accommodation</strong><span>Hotels and lodging</span></div>
-                            <strong class="limit">₦150,000</strong>
-                        </div>
-                        <div class="policy-item">
-                            <div class="category-icon">◈</div>
-                            <div class="category-details"><strong>Other</strong><span>Other business expenses</span></div>
-                            <strong class="limit">₦25,000</strong>
+                        <div class="help-item">
+                            <span class="help-icon">✓</span>
+                            <div><strong>Clear explanations</strong><p>Understand differences and when further review is needed.</p></div>
                         </div>
                     </div>
-
-                    <div class="policy-notice">
-                        <span>ⓘ</span>
-                        <p>These are demonstration policy limits. They do not represent an actual company's financial approval rules.</p>
+                    <div class="notice-card">
+                        <strong>Important</strong>
+                        <p>A claim within a policy limit is not automatically approved or paid. Final decisions require the appropriate review process.</p>
                     </div>
                 </aside>
-            </section>
+            </div>
+        </section>
 
-            <footer>
-                <span>ExpenseFlow AI · Educational demonstration</span>
-                <span>Powered by Microsoft Agent Framework & Ollama</span>
-            </footer>
-        </main>
-    </div>
+        <section class="view" id="policy" data-page-title="Expense Policy" hidden>
+            <div class="page-intro">
+                <span class="eyebrow">COMPANY GUIDANCE</span>
+                <h2>Expense Policy</h2>
+                <p>Review the simulated spending limits and understand how expense claims are assessed.</p>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+            <div class="policy-summary">
+                <div>
+                    <span class="summary-label">POLICY CATEGORIES</span>
+                    <strong>04</strong>
+                    <small>Expense categories configured</small>
+                </div>
+                <div>
+                    <span class="summary-label">CURRENCY</span>
+                    <strong>NGN (₦)</strong>
+                    <small>Nigerian Naira</small>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <h2>Spending limits</h2>
+                    <p>Maximum amounts used by this demonstration.</p>
+                </div>
+            </div>
+
+            <div class="policy-grid">
+                <article class="policy-card">
+                    <div class="policy-card-top"><span class="policy-category-icon">↗</span><span class="policy-tag">CATEGORY 01</span></div>
+                    <h3>Transport</h3>
+                    <p>Travel and transportation-related expenses.</p>
+                    <div class="policy-amount"><span>Policy limit</span><strong>₦50,000</strong></div>
+                </article>
+                <article class="policy-card">
+                    <div class="policy-card-top"><span class="policy-category-icon">◷</span><span class="policy-tag">CATEGORY 02</span></div>
+                    <h3>Meals</h3>
+                    <p>Food, meals and refreshments.</p>
+                    <div class="policy-amount"><span>Policy limit</span><strong>₦30,000</strong></div>
+                </article>
+                <article class="policy-card">
+                    <div class="policy-card-top"><span class="policy-category-icon">⌂</span><span class="policy-tag">CATEGORY 03</span></div>
+                    <h3>Accommodation</h3>
+                    <p>Hotels, lodging and approved accommodation expenses.</p>
+                    <div class="policy-amount"><span>Policy limit</span><strong>₦150,000</strong></div>
+                </article>
+                <article class="policy-card">
+                    <div class="policy-card-top"><span class="policy-category-icon">＋</span><span class="policy-tag">CATEGORY 04</span></div>
+                    <h3>Other</h3>
+                    <p>Other eligible expenses not covered by the listed categories.</p>
+                    <div class="policy-amount"><span>Policy limit</span><strong>₦25,000</strong></div>
+                </article>
+            </div>
+
+            <div class="section-heading rules-heading">
+                <div>
+                    <h2>How claim assessment works</h2>
+                    <p>Important guidance when checking an expense.</p>
+                </div>
+            </div>
+
+            <div class="rules-panel">
+                <div class="rule-row">
+                    <span class="rule-number">01</span>
+                    <div><strong>Choose the correct category</strong><p>Each expense is assessed against the limit for its own category.</p></div>
+                </div>
+                <div class="rule-row">
+                    <span class="rule-number">02</span>
+                    <div><strong>Compare the claimed amount</strong><p>The assistant checks the amount against the configured policy limit.</p></div>
+                </div>
+                <div class="rule-row">
+                    <span class="rule-number">03</span>
+                    <div><strong>Review claims above the limit</strong><p>Claims exceeding a limit require further review. They are not automatically approved or paid.</p></div>
+                </div>
+                <div class="rule-row">
+                    <span class="rule-number">04</span>
+                    <div><strong>Complete the approval process</strong><p>A result within policy does not guarantee reimbursement. Appropriate human approval is still required.</p></div>
+                </div>
+            </div>
+
+            <div class="notice-card policy-disclaimer">
+                <strong>Demonstration policy notice</strong>
+                <p>These limits are simulated for an educational project. They are not official company reimbursement rules or a guarantee of payment. Actual expense policies may differ between organisations.</p>
+            </div>
+
+            <button class="primary-button policy-ask-button" type="button" data-go="assistant">
+                Ask the AI Assistant <span>→</span>
+            </button>
+        </section>
+
+        <footer>
+            <span>© 2026 ExpenseFlow</span>
+            <span>Educational expense management demonstration</span>
+            <span class="powered-by">Powered by <strong>AgatuBot</strong></span>
+        </footer>
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
+
