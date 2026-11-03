@@ -21,10 +21,20 @@ function addMessage(message, sender) {
     author.className = "message-author";
     author.textContent = sender === "assistant" ? "ExpenseFlow AI" : "You";
 
-    const paragraph = document.createElement("p");
-    paragraph.textContent = message;
+    const body = document.createElement("div");
+    body.className = "message-body";
 
-    content.append(author, paragraph);
+    if (sender === "assistant") {
+        body.innerHTML = DOMPurify.sanitize(
+            marked.parse(message)
+        );
+    } else {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = message;
+        body.appendChild(paragraph);
+    }
+
+    content.append(author, body);
     wrapper.appendChild(content);
 
     chatArea.appendChild(wrapper);
