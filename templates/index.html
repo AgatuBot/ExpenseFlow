@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101828">
+    <title>ExpenseFlow | AI Expense Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">E</div>
+                <div>
+                    <strong>ExpenseFlow</strong>
+                    <span>INTELLIGENT FINANCE</span>
+                </div>
+            </div>
+
+            <div class="workspace-label">WORKSPACE</div>
+            <nav>
+                <a class="nav-item active" href="/">
+                    <span>▦</span> Overview
+                </a>
+                <a class="nav-item" href="#assistant">
+                    <span>✧</span> AI Assistant
+                </a>
+                <a class="nav-item" href="#policy">
+                    <span>✓</span> Expense Policy
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="online-indicator"></div>
+                <div>
+                    <strong>Local AI engine</strong>
+                    <span>Powered by Ollama</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <span class="breadcrumb">Workspace / Overview</span>
+                    <h1>Expense management</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="status-pill"><span></span> AI engine configured</span>
+                    <div class="avatar">U</div>
+                </div>
+            </header>
+
+            <section class="welcome">
+                <div>
+                    <span class="eyebrow">INTELLIGENT EXPENSE MANAGEMENT</span>
+                    <h2>Make smarter expense decisions.</h2>
+                    <p>Analyse claims, understand company policy and get instant explanations with your AI assistant.</p>
+                </div>
+                <div class="welcome-art">✧</div>
+            </section>
+
+            <section class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-heading">AI MODEL <span>✧</span></div>
+                    <div class="stat-value">Qwen 2.5</div>
+                    <div class="stat-note">3B parameter model</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-heading">POLICY CATEGORIES <span>▤</span></div>
+                    <div class="stat-value">04</div>
+                    <div class="stat-note">Configured expense types</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-heading">AI AVAILABILITY <span>●</span></div>
+                    <div class="stat-value">Local</div>
+                    <div class="stat-note">Runs through Ollama</div>
+                </article>
+            </section>
+
+            <section class="content-grid">
+                <article class="panel assistant-panel" id="assistant">
+                    <div class="panel-heading">
+                        <div class="assistant-heading-icon">✧</div>
+                        <div>
+                            <h3>Expense AI Assistant</h3>
+                            <p>Ask questions about employee expense claims.</p>
+                        </div>
+                        <span class="live-label">● READY</span>
+                    </div>
+
+                    <div class="chat-area" id="chatArea" aria-live="polite">
+                        <div class="message assistant-message">
+                            <div class="message-avatar">✧</div>
+                            <div class="message-content">
+                                <span class="message-author">ExpenseFlow AI</span>
+                                <p>Hello! I'm your Expense Claim Assistant. Tell me about an expense claim, and I'll help you check it against the simulated company policy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="suggestions">
+                        <button class="suggestion" data-message="Check a transport expense claim of 35000 Naira.">Check ₦35,000 transport</button>
+                        <button class="suggestion" data-message="Can I claim 65000 Naira for transport?">Check ₦65,000 transport</button>
+                        <button class="suggestion" data-message="What are the expense policy limits?">Explain policy limits</button>
+                    </div>
+
+                    <form id="chatForm" class="chat-form">
+                        <label for="messageInput" class="sr-only">Your expense question</label>
+                        <input id="messageInput" type="text" placeholder="Describe an expense claim..." autocomplete="off" required>
+                        <button type="submit" id="sendButton">Send <span>↑</span></button>
+                    </form>
+                    <div class="privacy-note">Your AI model runs locally on your computer through Ollama.</div>
+                </article>
+
+                <aside class="panel policy-panel" id="policy">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Expense policy</h3>
+                            <p>Simulated company spending limits</p>
+                        </div>
+                        <span class="policy-icon">▤</span>
+                    </div>
+
+                    <div class="policy-list">
+                        <div class="policy-item">
+                            <div class="category-icon">↗</div>
+                            <div class="category-details"><strong>Transport</strong><span>Travel and commuting</span></div>
+                            <strong class="limit">₦50,000</strong>
+                        </div>
+                        <div class="policy-item">
+                            <div class="category-icon">☕</div>
+                            <div class="category-details"><strong>Meals</strong><span>Food and refreshments</span></div>
+                            <strong class="limit">₦30,000</strong>
+                        </div>
+                        <div class="policy-item">
+                            <div class="category-icon">⌂</div>
+                            <div class="category-details"><strong>Accommodation</strong><span>Hotels and lodging</span></div>
+                            <strong class="limit">₦150,000</strong>
+                        </div>
+                        <div class="policy-item">
+                            <div class="category-icon">◈</div>
+                            <div class="category-details"><strong>Other</strong><span>Other business expenses</span></div>
+                            <strong class="limit">₦25,000</strong>
+                        </div>
+                    </div>
+
+                    <div class="policy-notice">
+                        <span>ⓘ</span>
+                        <p>These are demonstration policy limits. They do not represent an actual company's financial approval rules.</p>
+                    </div>
+                </aside>
+            </section>
+
+            <footer>
+                <span>ExpenseFlow AI · Educational demonstration</span>
+                <span>Powered by Microsoft Agent Framework & Ollama</span>
+            </footer>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
