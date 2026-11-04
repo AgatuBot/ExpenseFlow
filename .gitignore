@@ -10,3 +10,7 @@ uploads/
 # API credentials
 Gemini Api key.txt
 Grook API key.txt
+
+# Local backups and generated files
+*.backup
+*.bak

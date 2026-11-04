@@ -1,28 +1,28 @@
-﻿# Build an AI Agent from Scratch — Without an Azure Subscription
+﻿# ExpenseFlow — AI Expense Claim Agent
 
 ## Project Overview
 
-This project documents the development of a purpose-specific AI agent using Python, Microsoft Agent Framework, Ollama and locally hosted Large Language Models (LLMs).
+ExpenseFlow is a purpose-built AI expense claim assistant developed with Python, Flask and Microsoft Agent Framework.
 
-The project is designed as a practical, beginner-friendly tutorial for anyone interested in becoming an AI Agentic Developer without needing a paid Microsoft Azure subscription.
+The application allows users to submit expense claims through a conversational interface. The AI agent uses a custom Python validation tool to compare claimed amounts against predefined expense policy limits and explain the results.
 
-Our goal is to build an Expense Claim AI Agent that can understand employee expense claims, check them against predefined company policies, use Python tools and provide useful responses.
+The project demonstrates how to build, test and deploy an AI-powered application without requiring a paid Microsoft Azure subscription.
 
 ## Project Objectives
 
-By completing this project, learners will understand how to:
+This project explores how to:
 
 - Set up a Python development environment.
-- Run an AI model locally using Ollama.
-- Understand Large Language Models (LLMs).
+- Run a local language model using Ollama.
 - Work with Microsoft Agent Framework.
-- Build AI agents using Python.
-- Create custom tools that an AI agent can call.
-- Connect an AI agent to a local language model.
-- Build a web interface for an AI application.
-- Test and troubleshoot an AI agent.
-- Prepare an application for deployment.
-- Document and publish software projects using GitHub.
+- Build an AI agent using Python.
+- Create custom Python tools that an agent can call.
+- Connect an agent to local and hosted AI model providers.
+- Build a web interface using Flask.
+- Validate expense claims against configurable policy limits.
+- Test and troubleshoot an AI application.
+- Deploy an application using Render.
+- Document and publish a software project using GitHub.
 
 ## Technologies
 
@@ -32,77 +32,192 @@ By completing this project, learners will understand how to:
 | Microsoft Agent Framework | AI agent development |
 | Ollama | Local AI model runtime |
 | Qwen2.5 3B | Local language model |
-| Flask | Web application |
-| Git and GitHub | Version control and documentation |
-| Render | Planned application hosting |
+| Groq | Hosted AI model provider |
+| Gemini | Hosted AI model provider |
+| Flask | Web application framework |
+| HTML, CSS and JavaScript | Frontend interface |
+| Git and GitHub | Version control and project documentation |
+| Render | Application hosting |
 
-## Why No Azure Subscription?
+## Key Features
 
-This project explores an alternative approach to learning AI agent development without relying on paid Azure resources.
+- Conversational expense claim assistant.
+- Custom Python expense-policy validation tool.
+- Expense category validation.
+- Clear explanations of policy limits and claim differences.
+- Support for local and hosted AI model providers.
+- Responsive web interface.
+- Human-review safeguards: the agent does not automatically approve or pay claims.
 
-We use Ollama to run a language model locally and Python to develop the agent.
+## Simulated Expense Policy
 
-The project follows Microsoft Agent Framework concepts while using a locally accessible model.
+The application currently uses the following educational policy limits:
 
-Note: Local development and testing do not require an Azure subscription. Public deployment of the application requires an accessible model endpoint. Any hosting or model service used must be checked for free-tier limits and possible charges.
+| Expense Category | Policy Limit |
+|---|---:|
+| Transport | ₦50,000 |
+| Meals | ₦30,000 |
+| Accommodation | ₦150,000 |
+| Other | ₦25,000 |
+
+The validation tool identifies whether a claim is within or above its configured limit.
+
+A result within policy does not guarantee approval or reimbursement. Claims exceeding a configured limit may require human review.
+
+These limits are simulated examples, not the official policy of an actual organisation.
+
+## AI Model Providers
+
+ExpenseFlow supports three provider configurations:
+
+- **Ollama:** Local model execution using Qwen2.5 3B.
+- **Groq:** Hosted model access using the Groq API.
+- **Gemini:** Hosted model access using the Gemini API.
+
+The provider is selected through the local environment configuration. API credentials must be stored securely and must never be committed to GitHub.
+
+## Running the Project Locally
+
+### 1. Clone the repository
+
+```powershell
+git clone https://github.com/AgatuBot/ExpenseFlow.git
+cd ExpenseFlow
+```
+
+### 2. Create a virtual environment
+
+```powershell
+python -m venv .venv
+```
+
+### 3. Activate the environment
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### 4. Install dependencies
+
+```powershell
+pip install -r requirements.txt
+```
+
+### 5. Configure your AI provider
+
+Create a local `.env` file in the project directory.
+
+For local Ollama use:
+
+```env
+AI_PROVIDER=ollama
+```
+
+For Groq use:
+
+```env
+AI_PROVIDER=groq
+GROQ_API_KEY=your_groq_api_key
+```
+
+For Gemini use:
+
+```env
+AI_PROVIDER=gemini
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Use your own API credentials. Do not publish them or include them in source control.
+
+For Ollama, install Ollama and download the local model:
+
+```powershell
+ollama pull qwen2.5:3b
+```
+
+### 6. Start the application
+
+```powershell
+python app.py
+```
+
+Open the application in your browser:
+
+`http://127.0.0.1:5000/`
+
+## Live Application
+
+The deployed application is hosted on Render:
+
+https://expenseflow-4jsn.onrender.com/
+
+Hosting availability and free-tier limitations may affect response times.
 
 ## Project Structure
 
 ```text
 Azure-AI-Agents-Journey/
-├── README.md
-├── LEARNING-JOURNAL.md
+├── app.py
 ├── src/
-├── tests/
-├── docs/
-├── screenshots/
-└── youtube-tutorial/
-
+│   ├── agent.py
+│   └── policy_tools.py
+├── templates/
+│   └── index.html
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── app.js
+│   └── images/
+│       └── agatubot-logo.jpg
+├── requirements.txt
+├── Procfile
+├── .python-version
+├── .gitignore
+├── README.md
+└── LEARNING-JOURNAL.md
 ```
 
-The actual project structure is:
-
-```text
-Azure-AI-Agents-Journey/
-├── README.md
-├── LEARNING-JOURNAL.md
-├── src/
-├── tests/
-├── docs/
-├── screenshots/
-└── youtube-tutorial/
-```
-
-## Development Roadmap
-
-- [x] Create the project directory.
-- [x] Set up the Python virtual environment.
-- [x] Install and configure Ollama.
-- [x] Download and test Qwen2.5 3B.
-- [x] Install the Microsoft Agent Framework Ollama connector.
-- [x] Create the project documentation structure.
-- [ ] Build the expense-claim AI agent.
-- [ ] Implement custom Python tools.
-- [ ] Create a Flask web interface.
-- [ ] Test the complete application.
-- [ ] Prepare and complete deployment.
-- [ ] Publish the beginner-friendly GitHub tutorial.
-- [ ] Produce a YouTube teaching video.
-
-## Author and Learning Journey
+## Learning Journey
 
 This project is part of my practical journey towards becoming an AI Agentic Developer.
 
-The objective is not simply to complete an exercise, but to understand how AI agents are designed, developed, tested and deployed.
+The goal is to understand more than how to run an AI model. It is to learn how agents interact with tools, how application logic is designed, how AI responses are controlled, and how an application is tested and deployed.
 
-I will document the major learning stages, challenges, solutions, code examples and achievements throughout this project.
+The learning journal records the development process, technical decisions, challenges, solutions and lessons learned.
+
+## Current Project Status
+
+- [x] Create project directory and Python virtual environment.
+- [x] Install and configure Ollama.
+- [x] Download and test Qwen2.5 3B.
+- [x] Integrate Microsoft Agent Framework.
+- [x] Build the expense claim AI agent.
+- [x] Implement custom Python policy validation.
+- [x] Integrate local and hosted AI providers.
+- [x] Build the Flask web interface.
+- [x] Test within-policy and over-limit claims.
+- [x] Implement safeguards against unsupported approval and payment claims.
+- [x] Deploy the application to Render.
+- [x] Publish the project to GitHub.
+- [ ] Complete the learning journal.
+- [ ] Prepare a beginner-friendly project tutorial.
+- [ ] Produce a YouTube demonstration.
+
+## Author and Project Branding
+
+**Developer:** Daniel Samson
+**GitHub:** [AgatuBot](https://github.com/AgatuBot)
+**Project:** ExpenseFlow
+
+ExpenseFlow is developed as a practical learning project focused on Python, AI agents, tool integration and application deployment.
 
 ## Disclaimer
 
-This is an educational project. The expense-claim agent will initially use simulated company policies and expense submissions. It is not an actual financial approval system.
+ExpenseFlow is an educational demonstration. Its expense limits and validation rules are simulated.
 
-Deployment options and free-tier limitations will be verified before publishing the application.
+The application does not make official financial decisions, approve claims or initiate payments. Actual expense claims require the appropriate organisational review and approval processes.
 
 ---
 
-**Project Status:** In Development
+**Project Status:** Functional prototype — deployed on Render.
